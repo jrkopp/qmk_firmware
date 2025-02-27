@@ -360,8 +360,3 @@ uint16_t achordion_streak_chord_timeout(
   }
   return 400;  // Default of 100 ms.
 }
-
-bool achordion_eager_mod(uint8_t mod) {
-  return false;
-}
-
