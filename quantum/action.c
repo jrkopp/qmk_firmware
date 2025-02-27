@@ -535,6 +535,7 @@ void process_action(keyrecord_t *record, action_t action) {
                                 neutralize_flashing_modifiers(get_mods());
                             }
 #    endif
+                            neutralize_flashing_modifiers(get_mods());
                             unregister_mods(mods);
                         }
                     }

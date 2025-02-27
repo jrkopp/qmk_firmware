@@ -332,20 +332,36 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 }
 
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  switch (tap_hold_keycode) {
+    case LGA:
+    case LAS:
+    case LCD:
+    case LSF:
+    case RGSC:
+    case RAL:
+    case RCK:
+    case RSJ:
+      return 3000;  // Must hold down the HRM while typing the following key
+  }
   if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
     return 0;  // Set to zerp for layer-tap keys.
   }
-  return 800;  // Otherwise use a timeout of 800 ms.
-}
-
-uint16_t achordion_streak_chord_timeout(
-    uint16_t tap_hold_keycode, uint16_t next_keycode) {
-  return 400;  // Default of 100 ms.
+  return TAPPING_TERM; // Otherwise use a timeout of 800 ms.
 }
 
 bool achordion_eager_mod(uint8_t mod) {
   return false;
 }
 
-// TODO: add logic for layer lock.  will need to determine where to add layer lock key maybe a combo.
+uint16_t achordion_streak_chord_timeout(
+    uint16_t tap_hold_keycode, uint16_t next_keycode) {
+  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+    return 0;  // Disable streak detection on layer-tap keys.
+  }
+  return 400;  // Default of 100 ms.
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  return false;
+}
 
