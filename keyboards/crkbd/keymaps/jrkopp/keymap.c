@@ -81,70 +81,67 @@ enum combo_events {
 const uint16_t PROGMEM jc_combo[] = {KC_V, KC_C, COMBO_END};
 
 combo_t key_combos[] = {
-  [JC_CW_TOGG] = COMBO_ACTION(jc_combo)
+  [VC_CW_TOGG] = COMBO_ACTION(jc_combo)
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [BASE] = LAYOUT_split_3x6_3_ex2(
-  //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
-       KC_GRV,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSLS,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-      KC_MINS,      LGA,    LAS,     LCD,     LSF,    KC_G, KC_LT_LP,             KC_GT_RP,    KC_H,     RSJ,     RCK,     RAL,    RGSC, KC_QUOT,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-     KC_AM_EX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-         LT(MEDIA, KC_ESC),   LT(NAV,KC_TAB),   LT(SYMBOL,KC_SPACE),            LT(SYMBOL, KC_ENTER),  LT(MOUSE, KC_BSPC),  LT(MEDIA, KC_DEL)
-         //`-------------------------------------------------------'            `-----------------------------------------------------------'
-  ),
+        //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
+             KC_GRV,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLS,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+            KC_MINS,     LGA,     LAS,     LCD,     LSF,    KC_G, KC_LT_LP,             KC_GT_RP,    KC_H,     RSJ,     RCK,     RAL,    RGSC, KC_QUOT,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+           KC_AM_EX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+               //`-------------------------------------------------------'            `-----------------------------------------------------------'
+        ),
     [SYMBOL] = LAYOUT_split_3x6_3_ex2(
-  //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
-     KC_TILDE, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_LBRC,               KC_RBRC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-       KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_LT_LP,             KC_GT_RP,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                                   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
-  //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-        LT(MEDIA, KC_ESC),   LT(NAV,KC_TAB),   LT(SYMBOL,KC_SPACE),             LT(SYMBOL, KC_ENTER),  LT(MOUSE, KC_BSPC),   LT(MEDIA, KC_DEL)
-        //`--------------------------------------------------------'            `------------------------------------------------------------'
-  ),
+        //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
+           KC_TILDE, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_LBRC,               KC_RBRC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+             KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_LT_LP,             KC_GT_RP,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                                   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
+        //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
+                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+               //`-------------------------------------------------------'            `-----------------------------------------------------------'
+        ),
     [NAV] = LAYOUT_split_3x6_3_ex2(
-  //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
-      _______,    UNDO,     CUT,    COPY,   PASTE, _______, _______,              _______,     CBS, KC_HOME,     CLA,     CRA,  KC_END,    CDEL,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-      _______, _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,              _______, KC_BSPC, KC_LEFT,   KC_UP, KC_DOWN,KC_RIGHT,  KC_DEL,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-      _______,    UNDO,     CUT,    COPY,   PASTE, _______,                       _______,   CHOME, KC_PGUP, KC_PGDN,    CEND,  KC_INS,
-  //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-         LT(MEDIA, KC_ESC),   LT(NAV,KC_TAB),   LT(SYMBOL,KC_SPACE),            LT(SYMBOL, KC_ENTER),  LT(MOUSE, KC_BSPC),  LT(MEDIA, KC_DEL)
-         //`-------------------------------------------------------'            `-----------------------------------------------------------'
-  ),
-
+        //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
+            _______,    UNDO,     CUT,    COPY,   PASTE, _______, _______,              _______,     CBS, KC_HOME,     CLA,     CRA,  KC_END,    CDEL,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
+            _______, _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,              _______, KC_BSPC, KC_LEFT,   KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
+            _______,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______,   CHOME, KC_PGUP, KC_PGDN,    CEND,  KC_INS,
+        //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
+                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+               //`-------------------------------------------------------'            `-----------------------------------------------------------'
+        ),
     [MOUSE] = LAYOUT_split_3x6_3_ex2(
-  //,--------------------------------------------------------------.     yyf       ,--------------------------------------------------------------.
-      MS_WHLU, MS_BTN1,     MNW,   MS_UP,     MNE, MS_ACL0, _______,              _______, _______,   PASTE,    COPY,     CUT,    UNDO, _______,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-      MS_WHLD, MS_BTN2, MS_LEFT, _______, MS_RGHT, MS_ACL1, _______,              _______, _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-      _______, MS_BTN3,     MSW, MS_DOWN,     MSE, MS_ACL2,                                _______,   PASTE,    COPY,     CUT,    UNDO, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-         LT(MEDIA, KC_ESC),   LT(NAV,KC_TAB),   LT(SYMBOL,KC_SPACE),            LT(SYMBOL, KC_ENTER),  LT(MOUSE, KC_BSPC),  LT(MEDIA, KC_DEL)
-         //`-------------------------------------------------------'            `-----------------------------------------------------------'
-  ),
-
+        //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
+            MS_WHLU, MS_BTN1,     MNW,   MS_UP,     MNE, MS_ACL0, _______,              _______, _______,   PASTE,    COPY,     CUT,    UNDO, _______,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
+            MS_WHLD, MS_BTN2, MS_LEFT, _______, MS_RGHT, MS_ACL1, _______,              _______, _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
+            _______, MS_BTN3,     MSW, MS_DOWN,     MSE, MS_ACL2,                                _______,   PASTE,    COPY,     CUT,    UNDO, _______,
+        //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
+                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+               //`-------------------------------------------------------'            `-----------------------------------------------------------'
+        ),
     [MEDIA] = LAYOUT_split_3x6_3_ex2(
-  //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
-      _______, KC_MPLY, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,              _______, _______,    KC_7,    KC_8,    KC_9, KC_PAST, KC_PSLS,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-      _______, UG_TOGG, UG_HUEU, UG_SATU, UG_VALU, _______, _______,              _______, KC_PDOT,    KC_4,    KC_5,    KC_6, KC_PPLS, KC_PMNS,
-  //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-      _______, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                                   KC_0,    KC_1,    KC_2,    KC_3, KC_PENT, _______,
-  //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-         LT(MEDIA, KC_ESC),   LT(NAV,KC_TAB),   LT(SYMBOL,KC_SPACE),            LT(SYMBOL, KC_ENTER),  LT(MOUSE, KC_BSPC),  LT(MEDIA, KC_DEL)
-         //`-------------------------------------------------------'            `-----------------------------------------------------------'
-
-  )
+        //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
+            _______, KC_MPLY, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,              _______, _______,    KC_7,    KC_8,    KC_9, KC_PAST, KC_PSLS,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
+            _______, UG_TOGG, UG_HUEU, UG_SATU, UG_VALU, _______, _______,              _______, KC_PDOT,    KC_4,    KC_5,    KC_6, KC_PPLS, KC_PMNS,
+        //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
+            _______, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                                   KC_0,    KC_1,    KC_2,    KC_3, KC_PENT, _______,
+        //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
+                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+               //`-------------------------------------------------------'            `-----------------------------------------------------------'
+        )
 };
 
 #ifdef ENCODER_MAP_ENABLE
@@ -252,24 +249,24 @@ void keyboard_post_init_user(void) {
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
-    case BASE:
-      rgblight_sethsv(0, 0, 48); // white at 25% brightness
-      break;
-    case SYMBOL:
-      rgblight_sethsv(0, 200, 48);  // red at 25% brightness
-      break;
-    case NAV:
-      rgblight_sethsv(85, 200, 48); // green at 25% brightness
-      break;
-    case MOUSE:
-      rgblight_sethsv(85, 200, 48); // green at 25% brightness
-      break;
-    case MEDIA:
-      rgblight_sethsv(170, 200, 48);  // blue at 25% brightness
-      break;
-    default: //  for any other layers, or the default layer
-      rgblight_sethsv(0, 0, 48); // white at 25% brightness
-      break;
+      case BASE:
+        rgblight_sethsv(0, 0, 48); // white at 25% brightness
+        break;
+      case SYMBOL:
+        rgblight_sethsv(0, 200, 48);  // red at 25% brightness
+        break;
+      case NAV:
+        rgblight_sethsv(85, 200, 48); // green at 25% brightness
+        break;
+      case MOUSE:
+        rgblight_sethsv(85, 200, 48); // green at 25% brightness
+        break;
+      case MEDIA:
+        rgblight_sethsv(170, 200, 48);  // blue at 25% brightness
+        break;
+      default: //  for any other layers, or the default layer
+        rgblight_sethsv(0, 0, 48); // white at 25% brightness
+        break;
     }
   return state;
 }
@@ -311,3 +308,44 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // Deactivate Caps Word.
     }
 }
+
+void housekeeping_task_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+
+  // Allow same-hand holds for layer tap keys.
+  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+    return true;  // Same hand is ok for layer tap keys
+  }
+
+  // Also allow same-hand holds when the other key is in the rows below the
+  // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
+  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+    return 0;  // Set to zerp for layer-tap keys.
+  }
+  return 800;  // Otherwise use a timeout of 800 ms.
+}
+
+uint16_t achordion_streak_chord_timeout(
+    uint16_t tap_hold_keycode, uint16_t next_keycode) {
+  return 400;  // Default of 100 ms.
+}
+
+bool achordion_eager_mod(uint8_t mod) {
+  return false;
+}
+
+// TODO: add logic for layer lock.  will need to determine where to add layer lock key maybe a combo.
+

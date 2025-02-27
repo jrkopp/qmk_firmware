@@ -25,6 +25,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define QUICK_TAP_TERM 0
 //#define TAPPING_TERM 100
 
+#define PERMISSIVE_HOLD
+#define TAPPING_TERM 300
+#define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_F18 
+#define MODS_TO_NEUTRALIZE { \
+    MOD_BIT(KC_LEFT_GUI), \
+    MOD_BIT(KC_LEFT_ALT), \
+    MOD_BIT(KC_LEFT_CTRL), \
+    MOD_BIT(KC_LEFT_SHIFT), \
+    MOD_BIT(KC_RIGHT_GUI), \
+    MOD_BIT(KC_RIGHT_ALT), \
+    MOD_BIT(KC_RIGHT_CTRL), \
+    MOD_BIT(KC_RIGHT_SHIFT) \
+}
+
+#define ACHORDION_STREAK
+
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
