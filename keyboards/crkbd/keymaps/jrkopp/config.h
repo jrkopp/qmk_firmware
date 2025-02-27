@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define QUICK_TAP_TERM 0
 //#define TAPPING_TERM 100
 
-#define RETRO_TAPPING
+#define PERMISSIVE_HOLD
 #define DUMMY_MOD_NEUTRALIZER_KEYCODE KC_F18
 
 // Neutralize left alt, left GUI, right GUI and left Control+Shift
@@ -39,6 +39,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     MOD_BIT(KC_RIGHT_SHIFT), \
     MOD_BIT(KC_RIGHT_ALT) \
 })
+
+#define ACHORDION_STREAK
 
 #define MOUSEKEY_DELAY 10
 #define MOUSEKEY_INTERVAL 20

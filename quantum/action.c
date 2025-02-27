@@ -32,6 +32,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "quantum.h"
 
+void neutralize_flashing_modifiers(uint8_t mods);
+
 #ifdef BACKLIGHT_ENABLE
 #    include "backlight.h"
 #endif
@@ -535,6 +537,7 @@ void process_action(keyrecord_t *record, action_t action) {
                                 neutralize_flashing_modifiers(get_mods());
                             }
 #    endif
+                            neutralize_flashing_modifiers(get_mods());
                             unregister_mods(mods);
                         }
                     }
