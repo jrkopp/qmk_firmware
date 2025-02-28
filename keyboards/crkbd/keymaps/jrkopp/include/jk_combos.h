@@ -3,21 +3,24 @@
 #include "process_combo.h"
 #include "caps_word.h"
 #include "quantum.h"
+#include "jk_macros.h"
+#include "action_layer.h"
 
 enum combo_events {
     VC_CW_TOGG = 0,
+    TB_LAYER0
 };
 
-const uint16_t PROGMEM jc_combo[] = {KC_V, KC_C, COMBO_END};
+const uint16_t PROGMEM vc_combo[] = {KC_V, KC_C, COMBO_END};
+const uint16_t PROGMEM tb_combo[] = {TDTS, TDBS, COMBO_END};
 
 combo_t key_combos[] = {
-  [VC_CW_TOGG] = COMBO_ACTION(jc_combo)
+  [VC_CW_TOGG] = COMBO_ACTION(vc_combo),
+  [TB_LAYER0] = COMBO_ACTION(tb_combo)
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
-
 void process_combo_event(uint16_t combo_index, bool pressed) {
   switch(combo_index) {
-
     case VC_CW_TOGG:
       if (pressed) {
         if (!is_caps_word_on()) {
@@ -27,6 +30,12 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
           caps_word_off();
           rgblight_sethsv(0, 0, 48); // white at 25% brightness
         }
+      }
+      break;
+    case TB_LAYER0:
+      if (pressed) {
+        layer_on(0);
+        rgblight_sethsv(0, 0, 48); // white at 25% brightness
       }
       break;
   }

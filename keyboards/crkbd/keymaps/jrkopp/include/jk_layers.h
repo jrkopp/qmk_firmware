@@ -1,10 +1,10 @@
 #pragma once
 
-enum layer_names {
+typedef enum {
     BASE = 0,
     SYMBOL,
     NAV,
     MOUSE,
     MEDIA,
-};
+} layer_names_t;
 
