@@ -1,4 +1,6 @@
 #include "caps_word.h"
+#include "action_util.h"
+#include "quantum.h"
 #include "jk_keycodes.h"
 
 bool caps_word_press_user(uint16_t keycode) {

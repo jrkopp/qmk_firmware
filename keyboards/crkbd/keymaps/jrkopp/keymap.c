@@ -30,10 +30,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "jk_keycodes.h"
 #include "jk_macros.h"
 #include "jk_combos.h"
-#include "jk_capsword.h"
+#include "jk_tapdance.h"
+
+#include "process_tap_dance.h"
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+    [TD_SPACE_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+    [TD_TAB_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+    [TD_BSPC_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+    [TD_ENT_MS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+    [TD_DEL_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset)
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-
     [BASE] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
              KC_GRV,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLS,
@@ -42,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
            KC_AM_EX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [SYMBOL] = LAYOUT_split_3x6_3_ex2(
@@ -53,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                                   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [NAV] = LAYOUT_split_3x6_3_ex2(
@@ -64,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______,   CHOME, KC_PGUP, KC_PGDN,    CEND,  KC_INS,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [MOUSE] = LAYOUT_split_3x6_3_ex2(
@@ -75,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______, MS_BTN3,     MSW, MS_DOWN,     MSE, MS_ACL2,                                _______,   PASTE,    COPY,     CUT,    UNDO, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [MEDIA] = LAYOUT_split_3x6_3_ex2(
@@ -86,19 +96,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                                   KC_0,    KC_1,    KC_2,    KC_3, KC_PENT, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                 LT(MEDIA, KC_ESC), LT(NAV, KC_SPACE), LT(SYMBOL, KC_TAB),            LT(SYMBOL, KC_BSPC), LT(MOUSE, KC_ENTER), LT(MEDIA, KC_DEL)
+                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         )
 };
-
-#ifdef ENCODER_MAP_ENABLE
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-  [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [1] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [2] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [3] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-};
-#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
@@ -180,6 +181,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           mousekey_send();
       }
       return false; // Indicates that the keycode was handled
+    case TDESME:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_ESC, MEDIA);
+      }
+      return true;
+    case TDSN:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_SPACE, NAV);
+      }
+      return true;
+    case TDTS:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_TAB, SYMBOL);
+      }
+      return true;
+    case TDBS:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_BSPC, SYMBOL);
+      }
+      return true;
+    case TDENMS:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_ENTER, MOUSE);
+      }
+      return true;
+    case TDDM:
+      if (record->event.pressed) {
+        set_tap_dance_layer(KC_DEL, MEDIA);
+      }
+      return true;
     default:
       return true; // Process all other keycodes normally
   }
