@@ -16,74 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
 #include QMK_KEYBOARD_H
-
-//  Pull in dd keycodes to maintain header compatibility
-#include "keycodes.h"
-
-// US ANSI shifted keycode aliases
-#include "keymap_us.h"
 
 // Modifiers and Masks
 #include "modifiers.h"
 #include <stdbool.h>
 
-#include "quantum_keycodes.h"
 #include <action_layer.h>
 
-#include "process_combo.h"
-#include "caps_word.h"
+#include "achordion.h"
 
-#include "features/achordion.h"
-
-enum layer_names {
-    BASE = 0,
-    SYMBOL,
-    NAV,
-    MOUSE,
-    MEDIA,
-};
-
-enum custom_keycodes {
-    KC_LT_LP = SAFE_RANGE,
-    KC_GT_RP,
-    KC_AM_EX,
-    MNW,
-    MSW,
-    MSE,
-    MNE
-};
-
-#define LGA LGUI_T(KC_A)
-#define LAS LALT_T(KC_S)
-#define LCD LCTL_T(KC_D)
-#define LSF LSFT_T(KC_F)  
-#define RGSC RGUI_T(KC_SCLN)
-#define RAL RALT_T(KC_L)
-#define RCK RCTL_T(KC_K)
-#define RSJ RSFT_T(KC_J)
-#define CBS LCTL(KC_BSPC)
-#define CRA LCTL(KC_RIGHT)
-#define CLA LCTL(KC_LEFT)
-#define CDEL LCTL(KC_DEL)
-#define CHOME LCTL(KC_HOME)
-#define CEND LCTL(KC_END)
-#define UNDO LCTL(KC_Z)
-#define COPY LCTL(KC_C)
-#define CUT LCTL(KC_X)
-#define PASTE LCTL(KC_V)
-
-enum combo_events {
-    VC_CW_TOGG = 0,
-};
-
-const uint16_t PROGMEM jc_combo[] = {KC_V, KC_C, COMBO_END};
-
-combo_t key_combos[] = {
-  [VC_CW_TOGG] = COMBO_ACTION(jc_combo)
-};
-/* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
+#include "jk_layers.h"
+#include "jk_keycodes.h"
+#include "jk_macros.h"
+#include "jk_combos.h"
+#include "jk_capsword.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -271,92 +218,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   return state;
 }
 
-void process_combo_event(uint16_t combo_index, bool pressed) {
-  switch(combo_index) {
-
-    case VC_CW_TOGG:
-      if (pressed) {
-        if (!is_caps_word_on()) {
-          caps_word_on();
-          rgblight_sethsv(30, 255, 48); // orange at 25% brightness
-        } else {
-          caps_word_off();
-          rgblight_sethsv(0, 0, 48); // white at 25% brightness
-        }
-      }
-      break;
-  }
-}
-
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-            return true;
-
-        default:
-            rgblight_sethsv(0, 0, 48); // white at 25% brightness
-            return false;  // Deactivate Caps Word.
-    }
-}
-
 void housekeeping_task_user(void) {
   achordion_task();
 }
 
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-
-  // Allow same-hand holds for layer tap keys.
-  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
-    return true;  // Same hand is ok for layer tap keys
-  }
-
-  // Also allow same-hand holds when the other key is in the rows below the
-  // alphas. I need the `% (MATRIX_ROWS / 2)` because my keyboard is split.
-  if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
-
-  // Otherwise, follow the opposite hands rule.
-  return achordion_opposite_hands(tap_hold_record, other_record);
-}
-
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  switch (tap_hold_keycode) {
-    case LGA:
-    case LAS:
-    case LCD:
-    case LSF:
-    case RGSC:
-    case RAL:
-    case RCK:
-    case RSJ:
-      return 3000;  // Must hold down the HRM while typing the following key
-  }
-  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
-    return 0;  // Set to zerp for layer-tap keys.
-  }
-  return TAPPING_TERM; // Otherwise use a timeout of 800 ms.
-}
-
-bool achordion_eager_mod(uint8_t mod) {
-  return false;
-}
-
-uint16_t achordion_streak_chord_timeout(
-    uint16_t tap_hold_keycode, uint16_t next_keycode) {
-  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
-    return 0;  // Disable streak detection on layer-tap keys.
-  }
-  return 400;  // Default of 100 ms.
-}
