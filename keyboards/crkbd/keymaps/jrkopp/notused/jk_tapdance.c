@@ -1,6 +1,25 @@
 #include "action_layer.h"
 #include "jk_tapdance.h"
 
+// ADD TO KEYMAP.C
+// tap_dance_action_t tap_dance_actions[] = {
+//     [TD_ESC_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+//     [TD_SPACE_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+//     [TD_TAB_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+//     [TD_BSPC_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+//     [TD_ENT_MS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
+//     [TD_DEL_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset)
+// };
+
+// ADD TO JK_MACROS.H
+// #define TDESME TD(TD_ESC_MED)
+// #define TDSN TD(TD_SPACE_NAV)
+// #define TDTS TD(TD_TAB_SYM)
+// #define TDBS TD(TD_BSPC_SYM)
+// #define TDENMS TD(TD_ENT_MS)
+// #define TDDM TD(TD_DEL_MED)
+
+
 static td_layer_t layer_tap_state = {
     .is_press_action = true,
     .state = TD_NONE,
