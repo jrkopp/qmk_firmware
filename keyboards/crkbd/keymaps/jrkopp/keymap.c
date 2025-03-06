@@ -46,13 +46,13 @@ tap_dance_action_t tap_dance_actions[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
-             KC_GRV,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLS,
+            QK_GESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLS,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
             KC_MINS,     LGA,     LAS,     LCD,     LSF,    KC_G, KC_LT_LP,             KC_GT_RP,    KC_H,     RSJ,     RCK,     RAL,    RGSC, KC_QUOT,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
            KC_AM_EX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
+                                                       LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [SYMBOL] = LAYOUT_split_3x6_3_ex2(
@@ -63,18 +63,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
               KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                                   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
+                                                       LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [NAV] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
             _______,    UNDO,     CUT,    COPY,   PASTE, _______, _______,              _______,     CBS, KC_HOME,     CLA,     CRA,  KC_END,    CDEL,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-            _______, _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,              _______, KC_BSPC, KC_LEFT,   KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
+            _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,  _______,             _______, KC_BSPC, KC_LEFT,   KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______,   CHOME, KC_PGUP, KC_PGDN,    CEND,  KC_INS,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
+                                                       LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [MOUSE] = LAYOUT_split_3x6_3_ex2(
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______, MS_BTN3,     MSW, MS_DOWN,     MSE, MS_ACL2,                                _______,   PASTE,    COPY,     CUT,    UNDO, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
+                                                       LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [MEDIA] = LAYOUT_split_3x6_3_ex2(
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
             _______, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                                   KC_0,    KC_1,    KC_2,    KC_3, KC_PENT, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
-                                                       TDESME, TDSN, TDTS,            TDBS, TDENMS, TDDM
+                                                       LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         )
 };
@@ -181,39 +181,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           mousekey_send();
       }
       return false; // Indicates that the keycode was handled
-    case TDESME:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_ESC, MEDIA);
-      }
-      return true;
-    case TDSN:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_SPACE, NAV);
-      }
-      return true;
-    case TDTS:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_TAB, SYMBOL);
-      }
-      return true;
-    case TDBS:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_BSPC, SYMBOL);
-      }
-      return true;
-    case TDENMS:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_ENTER, MOUSE);
-      }
-      return true;
-    case TDDM:
-      if (record->event.pressed) {
-        set_tap_dance_layer(KC_DEL, MEDIA);
-      }
-      return true;
     default:
-      return true; // Process all other keycodes normally
+        break;
   }
+  return true; // Process all other keycodes normally
 }
 
 void keyboard_post_init_user(void) {
