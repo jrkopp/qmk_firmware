@@ -1,7 +1,5 @@
 #pragma once
 
-#include "jk_tapdance.h"
-
 #define LGA LGUI_T(KC_A)
 #define LAS LALT_T(KC_S)
 #define LCD LCTL_T(KC_D)
@@ -20,12 +18,6 @@
 #define COPY LCTL(KC_C)
 #define CUT LCTL(KC_X)
 #define PASTE LCTL(KC_V)
-#define TDESME TD(TD_ESC_MED)
-#define TDSN TD(TD_SPACE_NAV)
-#define TDTS TD(TD_TAB_SYM)
-#define TDBS TD(TD_BSPC_SYM)
-#define TDENMS TD(TD_ENT_MS)
-#define TDDM TD(TD_DEL_MED)
 #define LTESME LT(MEDIA, KC_ESC)
 #define LTSN LT(NAV, KC_SPACE)
 #define LTTS LT(SYMBOL, KC_TAB)

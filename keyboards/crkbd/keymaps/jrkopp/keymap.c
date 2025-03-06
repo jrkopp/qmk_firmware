@@ -30,18 +30,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "jk_keycodes.h"
 #include "jk_macros.h"
 #include "jk_combos.h"
-#include "jk_tapdance.h"
 
-#include "process_tap_dance.h"
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
-    [TD_SPACE_NAV] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
-    [TD_TAB_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
-    [TD_BSPC_SYM] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
-    [TD_ENT_MS] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset),
-    [TD_DEL_MED] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, layer_finished, layer_reset)
-};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3_ex2(
