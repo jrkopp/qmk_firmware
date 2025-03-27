@@ -5,6 +5,6 @@ typedef enum {
     SYMBOL,
     NAV,
     MOUSE,
-    MEDIA,
+    FUN,
 } layer_names_t;
 
