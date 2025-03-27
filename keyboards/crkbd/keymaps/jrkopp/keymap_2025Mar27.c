@@ -35,55 +35,55 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
-             KC_DEL,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, _______,               _______,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSPC,
+            QK_GESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRC,               KC_RBRC,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, KC_BSLS,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-             KC_TAB,     LGA,     LAS,     LCD,     LSF,    KC_G, _______,               _______,    KC_H,     RSJ,     RCK,     RAL,    RGSC,  KC_ENT,
+            KC_MINS,     LGA,     LAS,     LCD,     LSF,    KC_G, KC_LT_LP,             KC_GT_RP,    KC_H,     RSJ,     RCK,     RAL,    RGSC, KC_QUOT,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-            KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_QUOT, KC_RSFT,
+           KC_AM_EX,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  KC_EQL,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
                                                        LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [SYMBOL] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------|.           ,---------------------------------------------------------------.
-             KC_DEL, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, _______,               _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_MINS, KC_EQL, KC_BSPC,
+           KC_TILDE, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC, KC_LBRC,               KC_RBRC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_UNDS,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-          KC_TAB, KC_BSLS, KC_LT, KC_LBRC, KC_LPRN, LSFT(KC_LBRC), _______,            _______, RSFT(KC_RBRC), KC_RPRN, KC_RBRC, KC_GT, KC_SLSH, KC_ENT,
+             KC_GRV,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_LT_LP,             KC_GT_RP,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
-            KC_LSFT,   KC_1,     KC_2,    KC_3,    KC_4,    KC_5,                                    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_RSFT,
+              KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,                                   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,
         //|--------+--------+--------+--------+--------+--------+--------|            |---------+--------+--------+--------+--------+--------+--------|
                                                        LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [NAV] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
-             KC_DEL, _______, SELWBAK, SELLINE, SELWORD, _______, _______,              _______, -------, KC_HOME,  KC_DEL, KC_PGUP, KC_BSPC, KC_BSPC,
+            _______,    UNDO,     CUT,    COPY,   PASTE, _______, _______,              _______,     CBS, KC_HOME,     CLA,     CRA,  KC_END,    CDEL,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-             KC_TAB,    SALL, KC_LALT, KC_LCTL, KC_LSFT, _______, _______,             _______, _______,  KC_END,   KC_UP, KC_PGDN, KC_RIGHT, KC_ENT,
+            _______, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, _______,  _______,             _______, KC_BSPC, KC_LEFT,   KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-            KC_LSFT,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______, KC_LEFT, KC_DOWN,KC_RIGHT, KC_RSFT, KC_RSFT,
+            _______,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______,   CHOME, KC_PGUP, KC_PGDN,    CEND,  KC_INS,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
                                                        LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
     [MOUSE] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
-             KC_DEL, _______, SELWBAK, SELLINE, SELWORD, _______, _______,              _______, _______, OM_BTN1, OM_DBL1, OM_BTN2, OM_W_UP, KC_BSPC,
+            MS_WHLU, MS_BTN1,     MNW,   MS_UP,     MNE, MS_ACL0, _______,              _______, _______,   PASTE,    COPY,     CUT,    UNDO, _______,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-             KC_TAB,    SALL, KC_LALT, KC_LCTL, KC_LSFT, _______, _______,              _______, _______, OM_HLD1,    OM_U, OM_REL1, OM_W_DN, KC_ENT,
+            MS_WHLD, MS_BTN2, MS_LEFT, _______, MS_RGHT, MS_ACL1, _______,              _______, _______, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, _______,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-            KC_LSFT,    UNDO,     CUT,    COPY,   PASTE, _______,                                _______,    OM_L,    OM_D,    OM_R, _______, KC_RSFT,
+            _______, MS_BTN3,     MSW, MS_DOWN,     MSE, MS_ACL2,                                _______,   PASTE,    COPY,     CUT,    UNDO, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
                                                        LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
         ),
-    [FUN] = LAYOUT_split_3x6_3_ex2(
+    [MEDIA] = LAYOUT_split_3x6_3_ex2(
         //,--------------------------------------------------------------.            ,--------------------------------------------------------------.
-             KC_DEL,   KC_F1,   KC_F2,   KC_F3,   KC_F4, KC_VOLU, KC_MUTE,              _______, KC_PPLS,    KC_7,    KC_8,    KC_9, KC_PMNS, KC_BSPC
+            _______, KC_MPLY, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,              _______, _______,    KC_7,    KC_8,    KC_9, KC_PAST, KC_PSLS,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------|--------+--------+--------+--------+--------+--------|
-             KC_TAB,   KC_F5,   KC_F6,   KC_F7,   KC_F8, KC_VOLD, KC_MUTE,              _______, KC_PDOT,    KC_4,    KC_5,    KC_6, KC_PAST, KC_PENT,
+            _______, UG_TOGG, UG_HUEU, UG_SATU, UG_VALU, _______, _______,              _______, KC_PDOT,    KC_4,    KC_5,    KC_6, KC_PPLS, KC_PMNS,
         //|--------+--------+--------+--------+--------+--------|--------|            |--------+--------+--------+--------+--------+--------+--------|
-            KC_LSFT,   KC_F9,  KC_F10,  KC_F11,  KC_F12, KC_MPLY, KC_MUTE,                          KC_0,    KC_1,    KC_2,    KC_3, KC_PSLS, KC_PENT,
+            _______, UG_NEXT, UG_HUED, UG_SATD, UG_VALD, _______,                                   KC_0,    KC_1,    KC_2,    KC_3, KC_PENT, _______,
         //|--------+--------+--------+--------+--------+--------+--------|            |--------+--------+--------+--------+--------+--------+--------|
                                                        LTESME, LTSN, LTTS,            LTBS, LTENMS, LTDM
                //`-------------------------------------------------------'            `-----------------------------------------------------------'
@@ -93,14 +93,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_achordion(keycode, record)) { return false; }
   switch (keycode) {
-    case KC_DELETE:
+    case KC_LT_LP:
       if (record->event.pressed) {
         if (get_mods() & MOD_MASK_SHIFT) {
           // Send "(" when Shift is held
-          tap_code16(KC_ESC);
+          tap_code16(KC_LPRN);
         } else {
           // Send "<" when Shift is not held
-          tap_code16(KC_DELETE);
+          tap_code16(KC_LT);
         }
       }
       return false; // Skip the "send key event" part
