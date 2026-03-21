@@ -35,6 +35,7 @@
     "[json]": {
         "editor.formatOnSave": false
     },
+    "C_Cpp.intelliSenseEngine": "disabled",
     "clangd.arguments": ["--header-insertion=never"],
     "json.schemas": [
         {

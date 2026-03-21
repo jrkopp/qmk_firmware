@@ -1,0 +1,9 @@
+repeat key
+sentence case / camel case / etc
+capsword
+  include these keys.  numbers, bspc, del,
+possible better usage of rgb lighting to indicate status like capsword on,
+leader key to allow abreviations,  edf -> export default function
+word / line select?
+
+
